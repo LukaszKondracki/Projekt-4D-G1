@@ -1,12 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
 
-:root {
+html {
     --padding: 10px;
     --bg: rgb(29, 29, 29);
     --bg2: rgb(43, 41, 43);
     --fg: aliceblue;
     --accent: orange;
     --accent-5: rgba(255, 166, 0, .5);
+}
+
+html.light {
+    --bg: rgb(236, 236, 236);
+    --bg2: rgb(209, 195, 209);
+    --fg: rgb(21, 22, 22);
+    --accent: rgb(255, 60, 0);
+    --accent-5: rgba(255, 94, 0, 0.5);
 }
 
 .panel {
@@ -110,4 +118,19 @@ nav > ul {
     display: flex;
     justify-content: space-evenly;
     padding: var(--padding);
+}
+
+#theme-swap {
+    position: fixed;
+    bottom: calc(var(--padding) * 2);
+    right: calc(var(--padding) * 2);
+    padding: var(--padding);
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: var(--bg);
+    border-style: none;
+}
+
+#theme-swap:hover {
+    background-color: var(--accent);
 }
