@@ -1,9 +1,13 @@
+:root {
+    --padding: 10px;
+}
+
 body {
     display: grid;
     grid-template-columns: 150px 1fr 150px;
     grid-template-rows: 40px 1fr 60px;
 
-    gap: 10px;
+    gap: var(--padding);
 
     min-height: 100vh;
     margin: 0;
@@ -30,7 +34,7 @@ nav > ul {
 
 .nav-list {
     display: flex;
-    gap: 10px;
+    gap: var(--padding);
     height: 100%;
     align-items: center;
 }
@@ -39,14 +43,21 @@ nav > ul {
     grid-row: 2;
     grid-column: 3;
     background-color: orange;
-    padding: 10px;
+    padding: var(--padding);
+    margin-right: var(--padding);
+}
+
+@media screen and (max-width: 500px) {
+    #side-nav {
+        margin: 0;
+    }
 }
 
 #content {
     grid-row: 2;
     grid-column: 2;
     background-color: green;
-    padding: 10px;
+    padding: var(--padding);
 }
 
 #footer {
@@ -56,5 +67,5 @@ nav > ul {
     background-color: blue;
     display: flex;
     justify-content: space-evenly;
-    padding: 10px;
+    padding: var(--padding);
 }
