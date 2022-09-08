@@ -1,16 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
 :root {
     --padding: 10px;
+    --bg: rgb(29, 29, 29);
+    --bg2: rgb(43, 41, 43);
+    --fg: aliceblue;
+    --accent: orange;
+    --accent-5: rgba(255, 166, 0, .5);
+}
+
+.panel {
+    background-color: var(--bg2);
 }
 
 body {
     display: grid;
-    grid-template-columns: 150px 1fr 150px;
+    grid-template-columns: 200px 1fr 200px;
     grid-template-rows: 40px 1fr 60px;
 
     gap: var(--padding);
 
     min-height: 100vh;
     margin: 0;
+
+    background-color: var(--bg);
+    color: var(--fg);
+
+    font-family: 'Raleway', sans-serif;
 }
 
 @media screen and (max-width: 500px) {
@@ -29,20 +45,31 @@ nav > ul {
 #nav {
     grid-row: 1;
     grid-column: 1 / 4;
-    background-color: red;
+    /* background-color: red; */
 }
 
 .nav-list {
     display: flex;
     gap: var(--padding);
     height: 100%;
+    align-items: stretch;
+}
+
+.nav-item:hover, .side-nav-item:hover {
+    background-color: var(--accent-5);
+}
+
+.nav-item, .side-nav-item {
+    display: flex;
     align-items: center;
+    padding: var(--padding);
+    transition: background-color 200ms ease-in-out;
 }
 
 #side-nav {
     grid-row: 2;
     grid-column: 3;
-    background-color: orange;
+    /* background-color: orange; */
     padding: var(--padding);
     margin-right: var(--padding);
 }
@@ -56,15 +83,30 @@ nav > ul {
 #content {
     grid-row: 2;
     grid-column: 2;
-    background-color: green;
-    padding: var(--padding);
+    /* background-color: green; */
+    padding: calc(var(--padding) * 3);
+    transition: padding 200ms ease-in-out;
+}
+
+#content > h1 {
+    margin-top: 0;
+}
+
+#content > article {
+    text-align: justify;
+}
+
+@media screen and (max-width: 500px) {
+    #content {
+        padding: var(--padding);
+    }
 }
 
 #footer {
     color: aliceblue;
     grid-row: 3;
     grid-column: 1 / 4;
-    background-color: blue;
+    /* background-color: blue; */
     display: flex;
     justify-content: space-evenly;
     padding: var(--padding);
