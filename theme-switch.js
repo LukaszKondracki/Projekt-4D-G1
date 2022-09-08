@@ -3,14 +3,18 @@ const button = document.getElementById('theme-swap');
 const elements = document.getElementsByTagName('html');
 const html = elements[0];
 
-const theme = getTheme();
-let isThemeLight = theme === 'light';
-
-html.classList.toggle('light', isThemeLight);
+changeTheme();
 
 button.addEventListener('click', () => {
 
-    isThemeLight = html.classList.contains('light');
+    
+    changeTheme();
+});
+
+function changeTheme() {
+    const theme = getTheme();
+
+    let isThemeLight = theme === 'light';
 
     if (isThemeLight) {
         html.classList.remove('light');
@@ -21,8 +25,7 @@ button.addEventListener('click', () => {
         button.innerText = "🌚";
         setTheme('light');
     }
-
-});
+}
 
 function getTheme() {
     const theme = localStorage.getItem('theme');
