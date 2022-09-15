@@ -1,7 +1,10 @@
 const form = document.getElementById('form');
 
+let errors = [];
+
 form.addEventListener('submit', (event) => {
     event.preventDefault();
+    errors = [];
 
     const f = Object.values(form);
 
@@ -13,24 +16,88 @@ form.addEventListener('submit', (event) => {
             'color: #fff', 
             'color: #0f0');
 
+        input.classList.remove('error');
+
+        let isValid = true;
+
         switch (input.id) {
             case 'email':
-                // walidacja emaila
+                isValid = validateEmail(input.value);
                 break;
             case 'name':
-                // walidacja imienia
+                isValid = validateName(input.value);
                 break;
             case 'body':
-                // walidacja tekstu
+                isValid = validateBody(input.value);
                 break;
             case 'agree':
-                // walidacja zgody
+                isValid = validateAgreement(input.checked);
                 break;
             default: 
                 break;
         }
 
+        if (!isValid) {
+            highlightInput(input);
+        }
     }
 
-    // form.submit();
+    console.log(errors);
+
+    if (errors.length <= 0) {
+        form.submit();
+    }
 });
+
+
+function validateEmail(email) {
+    const hasAt = email.includes('@');
+    const hasDot = email.includes('.');
+    const count = email.split(/\@|\./).length;
+
+    const isValid = hasDot && hasAt && (count >= 3);
+
+    if (!isValid) {
+        errors.push('The email is incorrect');
+    }
+
+    return isValid;
+}
+
+function validateName(name) {
+    const isNotEmpty = name.length > 0;
+    const isCapitalized = /[A-Z][a-zA-Z\-]+/.test(name);
+    
+    const isValid = isNotEmpty && isCapitalized;
+
+    if(!isValid) {
+        errors.push('Name is incorrect');
+    }
+
+    return isValid;
+}
+
+function validateBody(body) {
+    const isMinLength = body.length > 50;
+    const isMaxLength = body.length < 2000;
+
+    const isValid = isMinLength && isMaxLength;
+
+    if(!isValid) {
+        errors.push('Body must be between 50 and 200 chars');
+    }
+
+    return isValid;
+}
+
+function validateAgreement(agreement) {
+    if(!agreement) {
+        errors.push('You must agree!');
+    }
+
+    return agreement;
+}
+
+function highlightInput(input) {
+    input.classList.add('error');
+}
