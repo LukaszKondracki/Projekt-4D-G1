@@ -22,3 +22,26 @@
 #form > textarea {
     resize: vertical;
 }
+
+.input {
+    padding: calc(var(--padding) / 2);
+    background-color: var(--bg2);
+    color: var(--fg);
+    border: 1px solid var(--fg2);
+    outline-color: transparent;
+    transition: outline-color 200ms ease-in-out;
+}
+
+.input[type="submit"] {
+    cursor: pointer;
+}
+
+.input[type="submit"]:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    outline: 2px solid var(--accent);
+}
+
+.input:focus {
+    outline: 2px solid var(--accent);
+}

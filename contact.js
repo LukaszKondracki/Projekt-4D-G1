@@ -6,7 +6,12 @@ form.addEventListener('submit', (event) => {
     const f = Object.values(form);
 
     for (const input of f) {
-        console.log(`Input ${input.id} has value ${input.value}`);
+        console.log(
+            `%cInput %c${input.id || '[other]'} %chas value %c${input.value}`, 
+            'color: #fff', 
+            'color: #0f0', 
+            'color: #fff', 
+            'color: #0f0');
 
         switch (input.id) {
             case 'email':
