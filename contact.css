@@ -28,6 +28,13 @@
     color: red;
 }
 
+#form > .thanks {
+    grid-column:  1 / 3;
+    color: green;
+    border: 1px solid green;
+    padding: var(--padding);
+}
+
 #form > #errors.active {
     border: 1px solid red;
     padding: var(--padding);

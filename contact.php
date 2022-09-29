@@ -11,10 +11,30 @@
 
 </head>
 <body>
+
+    <?php require 'elements/navigation.php'; ?>
     
-    <form id="form" method="get" action="">
+    <form id="form" method="POST" action="">
 
         <ul id="errors"></ul>
+
+        <?php
+            if (!empty($_POST)) {
+                echo "<span class='thanks'>Thank you for contacting us, {$_POST['name']}</span>";
+            
+            
+                $name = date('Y-m-d-H:i:s') . '_' . $_POST['name'] . '.txt';
+                $file = fopen($name, 'ab+');
+    
+                if ($file) {
+                    fwrite($file, json_encode($_POST, JSON_PRETTY_PRINT));
+                    fclose($file);
+                } else {
+    
+                }
+            
+            }
+        ?>
 
         <label for="email">Email</label>
         <input type="email" name="email" id="email" class="input">
@@ -29,7 +49,10 @@
         <input type="checkbox" name="agree" id="agree" class="input">
 
         <input type="submit" value="Send" class="input">
+
     </form>
+
+    <?php require 'elements/footer.php' ?>
 
     <script src="contact.js"></script>
 

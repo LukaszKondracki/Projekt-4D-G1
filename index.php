@@ -10,22 +10,7 @@
 </head>
 <body>
 
-    <nav id="nav" class="panel">
-        <ul class="nav-list">
-            <li class="nav-item">
-                <img src="" alt="">
-            </li>
-            <li class="nav-item">
-                <a href="index.html">Home</a>
-            </li>
-            <li class="nav-item">
-                <a href="contact.html">Contact</a>
-            </li>
-            <li class="nav-item">
-                <a href="comments.html">Comments</a>
-            </li>
-        </ul>
-    </nav>
+    <?php require 'elements/navigation.php'; ?>
     
     <nav id="side-nav" class="panel">
         <ul class="side-nav-list">
@@ -57,14 +42,6 @@
         </article>
     </main>
 
-    <footer id="footer" class="panel">
-        <div class="copyright">Copyright &copy; 2022-2022</div>
-        <div class="about">This is my super cool website</div>
-        <div class="contact">foo@bar.com</div>
-    </footer>
-
-    <button id="theme-swap">🌞</button>
-
-    <script src="theme-switch.js"></script>
+    <?php require 'elements/footer.php' ?>
 </body>
 </html>

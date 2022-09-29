@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="contact.css">
 </head>
 <body>
+    
+    <?php require 'elements/navigation.php'; ?>
 
     <form action="" method="get" id="form">
         <label for="name">Name</label>
@@ -20,6 +22,8 @@
 
         <input type="submit" value="Send comment" class="input">
     </form>
+
+    <?php require 'elements/footer.php' ?>
     
     <script src="comments.js"></script>
 </body>
