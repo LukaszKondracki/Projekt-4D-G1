@@ -64,6 +64,14 @@ nav > ul {
     align-items: stretch;
 }
 
+.nav-item > a,
+.side-nav-item > a {
+    color: var(--fg);
+    text-decoration: none;
+    padding: var(--padding);
+    width: 100%;
+}
+
 .nav-item:hover, .side-nav-item:hover {
     background-color: var(--accent-5);
 }
@@ -71,7 +79,6 @@ nav > ul {
 .nav-item, .side-nav-item {
     display: flex;
     align-items: center;
-    padding: var(--padding);
     transition: background-color 200ms ease-in-out;
 }
 
@@ -112,7 +119,7 @@ nav > ul {
 }
 
 #footer {
-    color: aliceblue;
+    color: var(--fg);
     grid-row: 3;
     grid-column: 1 / 4;
     /* background-color: blue; */

@@ -19,27 +19,31 @@ form.addEventListener('submit', (event) => {
 
         input.classList.remove('error');
 
-        let isValid = true;
+        let error = null;
 
         switch (input.id) {
             case 'email':
-                isValid = validateEmail(input.value);
+                error = validateEmail(input.value);
                 break;
             case 'name':
-                isValid = validateName(input.value);
+                error = validateName(input.value);
                 break;
             case 'body':
-                isValid = validateBody(input.value);
+                error = validateBody(input.value);
                 break;
             case 'agree':
-                isValid = validateAgreement(input.checked);
+                error = validateAgreement(input.checked);
                 break;
             default: 
                 break;
         }
 
-        if (!isValid) {
+        if (error !== null) {
             input.classList.add('error');
+            const el = document.createElement('span');
+            el.innerText = error;
+            el.classList.add('error');
+            input.after(el);
         }
     }
 
@@ -68,9 +72,10 @@ function validateEmail(email) {
 
     if (!isValid) {
         errors.push('The email is incorrect');
+        return 'The email is incorrect';
     }
 
-    return isValid;
+    return null;
 }
 
 function validateName(name) {
@@ -81,9 +86,10 @@ function validateName(name) {
 
     if(!isValid) {
         errors.push('Name is incorrect');
+        return 'Name is incorrect';
     }
 
-    return isValid;
+    return null;
 }
 
 function validateBody(body) {
@@ -94,15 +100,17 @@ function validateBody(body) {
 
     if(!isValid) {
         errors.push('Body must be between 50 and 200 chars');
+        return 'Body must be between 50 and 200 chars';
     }
 
-    return isValid;
+    return null;
 }
 
 function validateAgreement(agreement) {
     if(!agreement) {
         errors.push('You must agree!');
+        return 'You must agree!';
     }
 
-    return agreement;
+    return null;
 }

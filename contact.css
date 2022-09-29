@@ -53,6 +53,10 @@
     outline: 2px solid var(--accent);
 }
 
+.input[type="checkbox"] {
+    justify-self: center;
+}
+
 .input:focus {
     outline: 2px solid var(--accent);
 }
@@ -60,4 +64,9 @@
 .input.error {
     outline: 2px solid red;
     border-color: red;
+}
+
+span.error {
+    color: red;
+    grid-column: 2;
 }
