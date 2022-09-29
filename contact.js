@@ -1,4 +1,5 @@
 const form = document.getElementById('form');
+const errorContainer = document.getElementById('errors');
 
 let errors = [];
 
@@ -38,14 +39,22 @@ form.addEventListener('submit', (event) => {
         }
 
         if (!isValid) {
-            highlightInput(input);
+            input.classList.add('error');
         }
     }
 
     console.log(errors);
 
+    for (const e of errors) {
+        const item = document.createElement('li');
+        item.innerText = e;
+        errorContainer.appendChild(item);
+    }
+
     if (errors.length <= 0) {
         form.submit();
+    } else {
+        errorContainer.classList.add('active');
     }
 });
 
@@ -96,8 +105,4 @@ function validateAgreement(agreement) {
     }
 
     return agreement;
-}
-
-function highlightInput(input) {
-    input.classList.add('error');
 }
