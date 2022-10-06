@@ -19,21 +19,15 @@
         <ul id="errors"></ul>
 
         <?php
-            if (!empty($_POST)) {
-                echo "<span class='thanks'>Thank you for contacting us, {$_POST['name']}</span>";
+        require 'src/database.php';
+
+        if (!empty($_POST)) {
+
+            echo "<span class='thanks'>Thank you for contacting us, {$_POST['name']}</span>";
             
+            save_mysqli_f($_POST['name'], $_POST['email'], $_POST['body']);
             
-                $name = date('Y-m-d-H:i:s') . '_' . $_POST['name'] . '.txt';
-                $file = fopen($name, 'ab+');
-    
-                if ($file) {
-                    fwrite($file, json_encode($_POST, JSON_PRETTY_PRINT));
-                    fclose($file);
-                } else {
-    
-                }
-            
-            }
+        }
         ?>
 
         <label for="email">Email</label>
