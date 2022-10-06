@@ -25,8 +25,8 @@
 
             echo "<span class='thanks'>Thank you for contacting us, {$_POST['name']}</span>";
             
-            save_mysqli_f($_POST['name'], $_POST['email'], $_POST['body']);
-            
+            $res = save_pdo($_POST['name'], $_POST['email'], $_POST['body']);
+            echo $res;
         }
         ?>
 
