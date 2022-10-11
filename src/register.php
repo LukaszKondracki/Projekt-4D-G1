@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 $name = $_POST['name'];
 $email = $_POST['email'];
 $email2 = $_POST['email2'];
@@ -6,7 +8,6 @@ $pass = $_POST['password'];
 $pass2 = $_POST['password2'];
 
 $hash = password_hash($pass, PASSWORD_ARGON2ID);
-
 
 $errors = [];
 
@@ -39,7 +40,8 @@ if ($pass !== $pass2) {
 }
 
 if (count($errors) > 0) {
-    echo join('<br>', $errors);
+    $_SESSION['errors'] = $errors;
+    header('Location: /Projekt-4D-G1/register.php');
     die('Errors');
 }
 

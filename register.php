@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +18,11 @@
     
     <form id="form" method="POST" action="src/register.php">
 
-        <ul id="errors"></ul>
+        <ul id="errors">
+            <?php foreach ($_SESSION['errors'] ?? [] as $e): ?>
+                <li><?=$e?></li>
+            <?php endforeach; ?>
+        </ul>
 
         <label for="name">Name</label>
         <input type="text" name="name" id="name" class="input">
