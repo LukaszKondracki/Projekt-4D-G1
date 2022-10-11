@@ -24,8 +24,14 @@
         <label for="email">Email</label>
         <input type="email" name="email" id="email" class="input">
 
+        <label for="email2">Repeat Email</label>
+        <input type="email" name="email2" id="email2" class="input">
+
         <label for="password">Password</label>
         <input type="password" name="password" id="password" class="input">
+
+        <label for="password2">Repeat Password</label>
+        <input type="password" name="password2" id="password2" class="input">
 
         <label for="agree">I agree to the privacy policy</label>
         <input type="checkbox" name="agree" id="agree" class="input">
@@ -36,7 +42,7 @@
 
     <?php require 'elements/footer.php' ?>
 
-    <script src="contact.js"></script>
+    <!-- <script src="contact.js"></script> -->
 
 </body>
 </html>
