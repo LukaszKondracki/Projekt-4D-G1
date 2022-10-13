@@ -39,10 +39,14 @@ if ($pass !== $pass2) {
     $errors[] = 'Passwords don\'t match';
 }
 
+if ( ! isset($_POST['agree'])) {
+    $errors[] = 'You need to agree to privacy policy';
+}
+
 if (count($errors) > 0) {
     $_SESSION['errors'] = $errors;
-    header('Location: /Projekt-4D-G1/register.php');
-    die('Errors');
+    header('Location: /4dti1/register.php');
+    die();
 }
 
 
@@ -74,6 +78,6 @@ $result = $stmt->execute([
 
 echo $result;
 
-header('Location: /Projekt-4D-G1/');
+header('Location: /4dti1/');
 
 die();

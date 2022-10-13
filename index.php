@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +17,7 @@
     <nav id="side-nav" class="panel">
         <ul class="side-nav-list">
             <li class="side-nav-item">
-                <a href="">qwe</a>
+                Hello, <?=$_SESSION['name']; ?>!
             </li>
             <li class="side-nav-item">
                 <a href="">rty</a>
