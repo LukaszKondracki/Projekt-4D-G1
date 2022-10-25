@@ -34,6 +34,12 @@
     <main id="content" class="panel">
         <h1>My website</h1>
 
+        <?php
+            require 'src/blogposts.php';
+            $blogs = getBlogposts(1);
+            echo '<pre>'.json_encode($blogs, JSON_PRETTY_PRINT).'</pre>';
+        ?>
+
         <article>
             <h2>Lorem Ipsum</h2>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed libero ligula, semper eu tincidunt ut, faucibus id tortor. Nulla at nisi ut quam pulvinar sodales. Sed ullamcorper nulla congue, iaculis ligula sit amet, pharetra felis. Donec sollicitudin, turpis ac vestibulum scelerisque, ex magna scelerisque erat, et congue elit arcu sit amet eros. In volutpat placerat enim, a pellentesque turpis gravida et. Pellentesque eu sodales nunc. Fusce maximus augue libero, ut facilisis urna auctor in. Nunc id velit venenatis, semper eros in, fermentum elit. Curabitur lectus dolor, rhoncus sit amet ante eu, tristique vehicula quam. Maecenas dictum nisi sed enim hendrerit, non posuere justo mattis. Sed laoreet laoreet mauris id sodales. Donec semper vel felis et tristique. Aliquam imperdiet nibh eget augue egestas pellentesque.

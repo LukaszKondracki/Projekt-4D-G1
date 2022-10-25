@@ -28,20 +28,15 @@ try {
     return false;
 }
 
-try {
-    $db = new PDO('mysql:host=127.0.0.1;dbname=4dti', 'root', '');
-} catch(Exception $e) {
-    echo $e->getMessage();
-    return false;
-}
-
 /**************************\
 |*  Get user account
 \**************************/
 
 // Create SQL query
 $sql = <<<SQL
-    SELECT u.Id, u.Name, u.Password FROM Users u
+    SELECT u.Id, u.Name, u.Password, r.Id as RoleId, r.CanManage
+    FROM Users u
+    JOIN Roles r ON u.RoleId = r.Id
     WHERE u.Email = :email
     LIMIT 1;
 SQL;
@@ -55,11 +50,12 @@ $stmt->execute([
 
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-
 if (password_verify($pass, $user['Password'])) {
     
     $_SESSION['id'] = $user['Id'];
     $_SESSION['name'] = $user['Name'];
+    $_SESSION['role_id'] = $user['RoleId'];
+    $_SESSION['can_manage'] = $user['CanManage'];
 
     header('Location: /4dti1/');
 
