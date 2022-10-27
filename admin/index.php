@@ -32,7 +32,7 @@
                 <a href="add_blogpost.php">Add blogpost</a>
             </li>
             <li class="side-nav-item">
-                <a href="">Manage blogposts</a>
+                <a href="manage_blogposts.php">Manage blogposts</a>
             </li>
             <li class="side-nav-item">
                 <a href="">Manage users</a>

@@ -16,12 +16,25 @@
     
     <nav id="side-nav" class="panel">
         <ul class="side-nav-list">
-            <li class="side-nav-item">
-                Hello, <?=$_SESSION['name']; ?>!
-            </li>
-            <li class="side-nav-item">
-                <a href="">rty</a>
-            </li>
+            <?php if(isset($_SESSION['name'])): ?>
+                <li class="side-nav-item">
+                    Hello, <?=$_SESSION['name']; ?>!
+                </li>
+            <?php else: ?>
+                <li class="side-nav-item">
+                    <a href="login.php">Log in</a>
+                </li>
+                <li class="side-nav-item">
+                    <a href="register.php">Register</a>
+                </li>
+            <?php endif; ?>
+
+            <?php if (isset($_SESSION['can_manage']) && $_SESSION['can_manage']): ?>
+                <li class="side-nav-item">
+                    <a href="admin">Admin</a>
+                </li>
+            <?php endif; ?>
+
             <li class="side-nav-item">
                 <a href="">uio</a>
             </li>
@@ -42,8 +55,10 @@
 
         <article>
             <h2><?=$blog->title?></h2>
+            <span style="color: <?=$blog->role_color?>"><?=$blog->author?></span>
+            <span> on </span>
             <time date="<?=$blog->created_at?>"><?=$blog->created_at?></time>
-            <?=$blog->body?>
+            <div><?=$blog->body?></div>
         </article>
 
         <?php endforeach; ?>
