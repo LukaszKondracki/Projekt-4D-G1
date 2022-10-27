@@ -37,17 +37,16 @@
         <?php
             require 'src/blogposts.php';
             $blogs = getBlogposts(1);
-            echo '<pre>'.json_encode($blogs, JSON_PRETTY_PRINT).'</pre>';
+            foreach($blogs as $blog):
         ?>
 
         <article>
-            <h2>Lorem Ipsum</h2>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed libero ligula, semper eu tincidunt ut, faucibus id tortor. Nulla at nisi ut quam pulvinar sodales. Sed ullamcorper nulla congue, iaculis ligula sit amet, pharetra felis. Donec sollicitudin, turpis ac vestibulum scelerisque, ex magna scelerisque erat, et congue elit arcu sit amet eros. In volutpat placerat enim, a pellentesque turpis gravida et. Pellentesque eu sodales nunc. Fusce maximus augue libero, ut facilisis urna auctor in. Nunc id velit venenatis, semper eros in, fermentum elit. Curabitur lectus dolor, rhoncus sit amet ante eu, tristique vehicula quam. Maecenas dictum nisi sed enim hendrerit, non posuere justo mattis. Sed laoreet laoreet mauris id sodales. Donec semper vel felis et tristique. Aliquam imperdiet nibh eget augue egestas pellentesque.
-
-            Cras ut varius nibh, at finibus nunc. Donec nec urna sit amet velit viverra rhoncus eu eget nunc. Mauris pulvinar vehicula orci, sit amet varius purus rhoncus id. Curabitur convallis, dolor ut accumsan dignissim, velit eros consectetur nunc, non dignissim felis diam id enim. Sed leo nisl, pharetra in rhoncus sit amet, cursus in risus. Sed condimentum, massa euismod molestie tincidunt, velit purus vestibulum mauris, quis efficitur nibh lacus id nulla. Ut non malesuada enim, id placerat felis. Praesent congue neque lectus, a iaculis elit rhoncus ut.
-
-            Integer tempor posuere urna et ultricies. Nunc viverra mauris at lectus condimentum rhoncus sit amet quis quam. Morbi scelerisque nisl enim, a imperdiet dui interdum a. Curabitur euismod dignissim risus ac vestibulum. Nunc lorem nisi, rhoncus non volutpat vel, suscipit ac nisi. Integer in libero fermentum, mattis lectus a, vestibulum tellus. Praesent ullamcorper lectus ut lectus accumsan, vitae lobortis ipsum dapibus.
+            <h2><?=$blog->title?></h2>
+            <time date="<?=$blog->created_at?>"><?=$blog->created_at?></time>
+            <?=$blog->body?>
         </article>
+
+        <?php endforeach; ?>
     </main>
 
     <?php require 'elements/footer.php' ?>

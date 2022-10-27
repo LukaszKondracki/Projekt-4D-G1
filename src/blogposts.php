@@ -2,26 +2,10 @@
 class Blogpost {
     public string $title;
     public string $body;
-    public DateTime $created_at;
+    public string $created_at;
     public string $author;
     public string $role;
-    public string $role_color;
-    
-    public function __construct(
-        string $title, 
-        string $body, 
-        DateTime $created_at, 
-        string $author, 
-        string $role, 
-        string $role_color
-    ) {
-        $this->$title = $title;
-        $this->$body = $body;
-        $this->$created_at = $created_at;
-        $this->$author = $author;
-        $this->$role = $role;
-        $this->$role_color = $role_color;
-    }    
+    public string $role_color;  
 }
 
 /**
@@ -39,23 +23,30 @@ function getBlogposts(int $page): array {
 
     // Create SQL query
     $sql = <<<SQL
-        SELECT b.Title, b.Body, b.CreatedAt as created_at, u.Name as author, r.Name as role, r.Color as role_color
+        SELECT 
+            b.Title as title, 
+            b.Body as body, 
+            b.CreatedAt as created_at, 
+            u.Name as author, 
+            r.Name as role, 
+            r.Color as role_color
         FROM Blogposts b
         JOIN Users u ON b.AuthorId = u.Id
         JOIN Roles r ON u.RoleId = r.Id
-        SKIP :s
-        TAKE :t;
+        LIMIT :skip, :take;
     SQL;
 
     // prepare statement
     $stmt = $db->prepare($sql);
 
-    $stmt->execute([
-        ':s' => ($page - 1) * $per_page,
-        ':t' => $per_page
-    ]);
+    $offset = ($page - 1) * $per_page;
 
-    echo json_encode($db->errorInfo(), JSON_PRETTY_PRINT);
+    $stmt->bindParam(':skip', $offset, PDO::PARAM_INT);
+    $stmt->bindParam(':take', $per_page, PDO::PARAM_INT);
 
-    return $stmt->fetch(PDO::FETCH_ASSOC);
+    $stmt->execute();
+
+    $result = $stmt->fetchAll(PDO::FETCH_CLASS, 'Blogpost');
+
+    return $result ? $result : [];
 }
