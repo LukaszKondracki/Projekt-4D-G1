@@ -1,0 +1,28 @@
+dl {
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding);
+}
+
+dt {
+    font-weight: bold;
+}
+
+dd {
+    margin-left: calc(var(--padding) * 2);
+}
+
+.btn {
+    border: none;
+    color: var(--fg);
+    padding: var(--padding);
+    cursor: pointer;
+}
+
+.btn.restore {
+    background-color: green;
+}
+
+.btn.delete {
+    background-color: red;
+}

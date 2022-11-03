@@ -1,4 +1,7 @@
-<?php session_start(); ?>
+<?php 
+    require 'vendor/autoload.php';
+    session_start();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -50,6 +53,10 @@
         <?php
             require 'src/blogposts.php';
             $blogs = getBlogposts(1);
+
+            $parsedown = new Parsedown();
+            $parsedown->setSafeMode(true);
+
             foreach($blogs as $blog):
         ?>
 
@@ -58,7 +65,7 @@
             <span style="color: <?=$blog->role_color?>"><?=$blog->author?></span>
             <span> on </span>
             <time date="<?=$blog->created_at?>"><?=$blog->created_at?></time>
-            <div><?=$blog->body?></div>
+            <div><?=$parsedown->text($blog->body)?></div>
         </article>
 
         <?php endforeach; ?>

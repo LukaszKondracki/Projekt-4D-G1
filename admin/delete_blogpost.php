@@ -19,6 +19,7 @@
 
     <link rel="stylesheet" href="../styles.css">
     <link rel="stylesheet" href="../contact.css">
+    <link rel="stylesheet" href="../admin.css">
 </head>
 <body>
     
@@ -50,7 +51,7 @@
 
         <form action="src/delete_blogpost.php" method="POST">
             <input name="id" type="hidden" value="<?=$blog->id?>">
-            <input type="submit" value="Delete blogpost">
+            <input class="btn delete" type="submit" value="Delete blogpost">
         </form>
     </main>
 

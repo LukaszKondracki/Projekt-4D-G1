@@ -1,0 +1,12 @@
+{
+    "name": "user/4dti1",
+    "authors": [
+        {
+            "name": "Łukasz Kondracki"
+        }
+    ],
+    "require": {
+        "erusev/parsedown": "^1.7",
+        "hashids/hashids": "^4.1"
+    }
+}

@@ -19,6 +19,7 @@
 
     <link rel="stylesheet" href="../styles.css">
     <link rel="stylesheet" href="../contact.css">
+    <link rel="stylesheet" href="../admin.css">
 </head>
 <body>
     
