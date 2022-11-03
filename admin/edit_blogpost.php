@@ -36,6 +36,8 @@
         <label for="body">Body</label>
         <textarea name="body" id="body" class="input" cols="30" rows="10"><?=$blog->body?></textarea>
 
+        <input type="hidden" name="id" value="<?=$blog->id?>">
+
         <input type="submit" value="Save post" class="input">
     </form>
 

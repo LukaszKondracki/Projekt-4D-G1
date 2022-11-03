@@ -31,6 +31,7 @@ function getBlogposts(int $page): array {
         FROM Blogposts b
         JOIN Users u ON b.AuthorId = u.Id
         JOIN Roles r ON u.RoleId = r.Id
+        WHERE b.DeletedAt IS NULL
         LIMIT :skip, :take;
     SQL;
 
@@ -54,6 +55,7 @@ class BlogpostSimple {
     public int $id;
     public string $title;
     public string $created_at;
+    public bool $is_deleted;
     public string $author; 
 }
 
@@ -75,7 +77,8 @@ function getBlogpostsSimple(int $page): array {
         SELECT 
             b.Id as id,
             b.Title as title, 
-            b.CreatedAt as created_at, 
+            b.CreatedAt as created_at,
+            b.DeletedAt IS NOT NULL as is_deleted,
             u.Name as author
         FROM Blogposts b
         JOIN Users u ON b.AuthorId = u.Id
@@ -127,6 +130,50 @@ function getSingleBlogpostEdit(int $id): ?BlogpostEdit {
     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 
     $stmt->setFetchMode(PDO::FETCH_CLASS, BlogpostEdit::class);
+    $stmt->execute();
+
+    return $stmt->fetch();
+}
+
+class BlogpostDelete {
+    public int $id;
+    public string $title;
+    public string $body;
+    public string $created_at;
+    public ?string $edited_at;
+    public ?string $deleted_at;
+    public string $author;
+}
+
+function getSingleBlogpostDelete(int $id): ?BlogpostDelete {
+    try {
+        $db = new PDO('mysql:host=127.0.0.1;dbname=4dti', 'root', '');
+    } catch(Exception $e) {
+        echo $e->getMessage();
+        return null;
+    }
+
+    // Create SQL query
+    $sql = <<<SQL
+        SELECT 
+            b.Id as id,
+            b.Title as title, 
+            b.Body as body,
+            b.CreatedAt as created_at,
+            b.EditedAt as edited_at,
+            b.DeletedAt as deleted_at,
+            u.Name as author
+        FROM Blogposts b
+        JOIN Users u ON b.AuthorId = u.Id
+        WHERE b.Id = :id
+        LIMIT 1;
+    SQL;
+
+    // prepare statement
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+    $stmt->setFetchMode(PDO::FETCH_CLASS, BlogpostDelete::class);
     $stmt->execute();
 
     return $stmt->fetch();

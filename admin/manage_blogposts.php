@@ -38,7 +38,11 @@
             <td><?=$blog->created_at?></td>
             <td>
                 <a href="edit_blogpost.php?id=<?=$blog->id?>">Edit</a>
-                <a href="delete_blogpost.php?id=<?=$blog->id?>">Delete</a>
+                <?php if ($blog->is_deleted):?>
+                    <a href="restore_blogpost.php?id=<?=$blog->id?>">Restore</a>
+                <?php else:?>
+                    <a href="delete_blogpost.php?id=<?=$blog->id?>">Delete</a>
+                <?php endif;?>
             </td>
         </tr>
 

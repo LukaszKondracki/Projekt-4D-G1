@@ -15,7 +15,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delete blgpost</title>
+    <title>Restore blgpost</title>
 
     <link rel="stylesheet" href="../styles.css">
     <link rel="stylesheet" href="../contact.css">
@@ -44,13 +44,16 @@
             <dt>Created at</dt>
             <dd><?=$blog->created_at?></dd>
 
+            <dt>Deleted at</dt>
+            <dd><?=$blog->created_at?></dd>
+
             <dt>Last edited</dt>
             <dd><?=$blog->edited_at ?? 'never'?></dd>
         </dl>
 
-        <form action="src/delete_blogpost.php" method="POST">
+        <form action="src/restore_blogpost.php" method="POST">
             <input name="id" type="hidden" value="<?=$blog->id?>">
-            <input type="submit" value="Delete blogpost">
+            <input type="submit" value="Restore blogpost">
         </form>
     </main>
 

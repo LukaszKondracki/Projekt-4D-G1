@@ -1,6 +1,4 @@
 <?php
-$title = $_POST['title'];
-$body = $_POST['body'];
 $id = $_POST['id'];
 
 /**********************************************\
@@ -11,24 +9,23 @@ try {
     $db = new PDO('mysql:host=127.0.0.1;dbname=4dti', 'root', '');
 } catch(Exception $e) {
     echo $e->getMessage();
-    die();
+    return false;
 }
 
 // Create SQL query
 $sql = <<<SQL
     UPDATE Blogposts b
-    SET b.Title = :title, b.Body = :body, b.EditedAt = CURRENT_TIMESTAMP
+    SET b.DeletedAt = CURRENT_TIMESTAMP
     WHERE b.Id = :id
 SQL;
 
 // prepare statement
 $stmt = $db->prepare($sql);
+$stmt->bindParam(':id', $id, PDO::PARAM_INT);
 
-$result = $stmt->execute([
-    ':title' => $title,
-    ':body' => $body,
-    ':id' => $id
-]);
+$result = $stmt->execute();
+
+echo $result;
 
 header('Location: /4dti1/');
 
